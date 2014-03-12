@@ -29,8 +29,6 @@
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
-<?php if(!is_user_logged_in()) { ?><script src="<?php bloginfo('template_url') ?>/js/analytics.js"></script><?php } ?>
-<?php if(!is_user_logged_in()) { ?><script src="<?php bloginfo('template_url') ?>/js/jquery-clicktracking.js"></script><?php } ?>
 <script type="text/javascript" src="http://www.google.co.jp/coop/cse/brand?form=cse-search-box&amp;lang=ja"></script>
 <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script type="text/javascript">

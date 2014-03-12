@@ -1,0 +1,12 @@
+.blog .format-aside,
+.archive .format-aside {
+	font-size: 0.85em;
+	background-color: #ffffcc;
+	border: solid 1px #CCCCCC;
+	padding: 15px;
+}
+
+.blog .format-aside .entry-title,
+.archive .format-aside .entry-title {
+	display: none;
+}

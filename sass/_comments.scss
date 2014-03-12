@@ -1,0 +1,62 @@
+
+#comments {
+	border: 1px solid #CCCCCC;
+	padding: 20px 30px;
+	background: #FFFFFF;
+	font-size: 17px;
+	font-size: 1.7rem;
+}
+
+.comments-title {
+	font-weight: bold;
+	border-bottom: dashed 1px #CCCCCC;
+	margin-bottom: 10px;
+}
+
+.commentlist {
+	list-style-type: none;
+	margin-left: 0;
+}
+
+.commentlist li ul {
+	list-style-type: none;
+}
+
+.commentlist li .comment-content ul {
+	list-style-type: disc;
+}
+
+.commentlist li {
+	padding: 10px;
+}
+
+.commentlist li .comment-content li {
+	padding: 0;
+}
+
+.thread-odd {
+	background-color: #EEEEEE;
+}
+
+.bypostauthor {
+	background-color: #ffffcc;
+}
+
+#reply-title {
+	font-weight: bold;
+	border-bottom: dashed 1px #CCCCCC;
+	margin-bottom: 10px;
+}
+
+#commentform .required {
+	font-weight: bold;
+	color: #CC0000;
+}
+
+#commentform label {
+	display: block;
+}
+
+#commentform code {
+	font-size: inherit;
+}

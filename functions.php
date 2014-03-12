@@ -106,8 +106,8 @@ function modshrink_s_widgets_init() {
 	register_sidebar( array(
 		'name'          => __( 'Primary Sidebar', 'modshrink_s' ),
 		'id'            => 'sidebar-1',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
 		'before_title'  => '<h1 class="widget-title">',
 		'after_title'   => '</h1>',
 	) );
@@ -127,6 +127,14 @@ function modshrink_s_widgets_init() {
 		'before_title'  => '<h1 class="widget-title">',
 		'after_title'   => '</h1>',
 	) );
+	register_sidebar( array(
+		'name'          => __( 'After <body>', 'modshrink_s' ),
+		'id'            => 'after_body',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '',
+		'before_title'  => '',
+		'after_title'   => '',
+	) );
 }
 add_action( 'widgets_init', 'modshrink_s_widgets_init' );
 
@@ -136,10 +144,12 @@ add_action( 'widgets_init', 'modshrink_s_widgets_init' );
 function modshrink_s_scripts() {
 	//wp_enqueue_style( 'modshrink_s-style', get_stylesheet_uri() );
 	wp_enqueue_style( 'modshrink_s-style', get_stylesheet_uri(), array(), date('YmdHis') );
-	wp_enqueue_style( 'dashicons', site_url('/')."/wp-includes/css/dashicons.min.css");
-/*
-	wp_enqueue_script( 'modshrink_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+	wp_enqueue_script( 'jquery' );
+	//wp_enqueue_style( 'dashicons', site_url('/')."/wp-includes/css/dashicons.min.css");
 
+	//wp_enqueue_script( 'modshrink_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+	//wp_enqueue_script( 'modshrink_s-doubletaptogo', get_template_directory_uri() . '/js/doubletaptogo.js', array( 'jquery' ));
+/*
 	wp_enqueue_script( 'modshrink_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -353,7 +363,9 @@ function social_count($url, $service){
     return $count;
 }
 
-// 最近の投稿ウィジェット
+/**
+ * 何日前の投稿ウィジェット
+ */
 
 add_action( 'widgets_init', create_function('', 'return register_widget("My_Recent_Posts");') );
 
@@ -454,4 +466,44 @@ class My_Recent_Posts extends WP_Widget {
 	}
 }
 
+/**
+ * コード専用ウィジェット
+ */
 
+add_action( 'widgets_init', create_function( '', 'return register_widget("internalCodeWidget");' ) );
+ 
+class internalCodeWidget extends WP_Widget {
+	function __construct() {
+		$widget_ops = array('description' => 'Output for internal codes.');
+		$control_ops = array( 'width' => 300, 'height' => 600 );
+		parent::__construct( false, 'Internal Code', $widget_ops, $control_ops );
+	}
+	 
+	public function form( $par ) {
+		$title = (isset($par['title']) && $par['title']) ? $par['title'] : '';
+		$id = $this->get_field_id('title');
+		$name = $this->get_field_name('title');
+		echo '<p>タイトル：';
+		echo '<input type="text" id="'.$id.'" name="'.$name.'" value="';
+		echo trim(htmlentities($title, ENT_QUOTES, 'UTF-8'));
+		echo '" /></p>';
+
+		$text = ( isset($par['text'] ) && $par['text']) ? $par['text'] : '';
+		$id = $this->get_field_id( 'text' );
+		$name = $this->get_field_name( 'text' );
+		echo '<p>テキスト：</p>';
+		echo '<textarea style="width:100%" id="'.$id.'" name="'.$name.'">';
+		if ( $par['text'] ) { echo trim( esc_html( $par['text'], ENT_QUOTES, 'UTF-8' ) ); }
+		echo '</textarea>';
+	}
+	 
+	public function update( $new_instance, $old_instance ) {
+		return $new_instance;
+	}
+	 
+	public function widget( $args, $par ) {
+		if ( $par['text'] ) {
+			echo trim( $par['text'] );
+		}
+	}
+}

@@ -1,0 +1,161 @@
+#site-navigation {
+	background: #000000;
+	font-family: 'Varela Round', sans-serif;
+
+	a {
+		padding: 7px 10px;
+		text-decoration: none;
+		display: block;
+		background: #000000;
+		color: #FFFFFF;
+
+		&:hover {
+			background: #FFFFFF;
+			color: #000000;
+		}
+	}
+
+	ul.menu {
+		margin: 0;
+	@include clearfix;
+	}
+
+	li.menu-item {
+		@include fontsize(13);
+		float: left;
+		width: 200px;
+		list-style-type: none;
+		position: relative;
+		text-align: center;
+		text-transform: uppercase;
+		display: block;
+
+				&:first-child {
+					display: none;
+				}
+
+		a { display: block; }
+
+		ul.sub-menu {
+			margin: 0;
+			padding: 10px 0 0 0;
+			position: absolute;
+			display: none;
+
+		}
+
+		&:hover .sub-menu {
+			display: block;
+		}
+
+		.menu-item {
+			border: none;
+			margin: 0;
+			padding: 0;
+
+			a {
+				padding: 5px 10px;
+				display: block;
+				&:link, &:visited, &:active {
+					color: #FFFFFF;
+					background: #000000;
+				}
+				&:hover {
+					color: #000000;
+					background: #FFFFFF;
+				}
+			}
+		}
+	}
+
+	.current-menu-parent a,
+	.current-menu-item a {
+	}
+}
+
+@media screen and (max-width: 480px) {
+	#site-navigation {
+
+		a {
+			text-decoration: none;
+			transition-property :none;
+
+			&:hover {
+				transition-property: none;
+				background: #000000;
+				color: #FFFFFF;
+			}
+		}
+
+		&:not( :target ) > a:first-of-type,
+		&:target > a:last-of-type {
+			display: block;
+		}
+
+		ul.menu {
+			margin: 0;
+			height: auto;
+		}
+
+		li.menu-item {
+			a { display: block; }
+			@include fontsize(20);
+			float: left;
+			width: 50%;
+			list-style-type: none;
+			position: block;
+			display: none;
+
+				&:first-child {
+					display: block;
+					a:after{
+					@include fontsize(20);
+					content: "\f333";
+					display: inline-block;
+					-webkit-font-smoothing: antialiased;
+					font-family: 'dashicons';
+					font-style: normal;
+					vertical-align: top;
+					}
+				}
+
+
+			ul.sub-menu {
+				margin: 0;
+				padding: 10px 0 0 0;
+				display: none;
+
+			}
+
+			&:hover .sub-menu {
+				display: block;
+			}
+
+			.menu-item {
+				border: none;
+				margin: 0;
+				padding: 0;
+
+
+				a {
+					padding: 5px 10px;
+					display: block;
+					&:link, &:visited, &:active {
+						color: #FFFFFF;
+						background: #000000;
+					}
+					&:hover {
+						color: #000000;
+						background: #FFFFFF;
+					}
+				}
+			}
+		}
+
+		.current-menu-parent a,
+		.current-menu-item a {
+		}
+	}
+}
+
+

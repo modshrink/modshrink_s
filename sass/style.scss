@@ -1,0 +1,50 @@
+/*!
+Theme Name: modshrink_s
+Theme URI: https://github.com/modshrink/modshrink_s
+Author: mayoibi
+Author URI: http://www.modshrink.com/
+Description: Underscores forked.
+Version: 0.0.1
+License: GNU General Public License
+*/
+
+@import "reset";
+@import "font";
+@import "color";
+@import "clearfix";
+@import "mixin";
+
+@import "core";
+
+@import "global-menu";
+@import "float-column";
+@import "page";
+@import "taxonomy";
+@import "byline";
+@import "entry-content";
+@import "page-link";
+@import "search";
+
+@import "aside";
+@import "media";
+@import "navigation";
+@import "widget";
+@import "pagination";
+
+@import "plugin-simple-amazon";
+@import "plugin-similar-posts";
+
+@import "social-button";
+
+@import "adsense";
+
+// New
+@import "header";
+
+@import "content";
+@import "comments";
+
+@import "footer";
+
+
+

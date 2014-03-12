@@ -1,0 +1,62 @@
+.social-button {
+	@include clearfix;
+}
+
+.custom-button {
+	border-right: 1px solid #CCCCCC;
+	margin-right: 5px;
+	padding-right: 10px;
+	font-size: 20px;
+	line-height: 1em;
+	float: left;
+
+	&:nth-last-child(1) { border-right: none; }
+
+	a:link,a:visited {
+		color: #55ACEE;
+		text-decoration: none;
+	}
+	a:hover,a:active {
+		text-decoration: none;
+	}
+
+	.count {
+		padding: 0 0 0 5px;
+		font-weight: normal;
+		font-family: Arial, sans-serif;
+		color: #000000;
+		vertical-align: middle;
+
+		&:before {
+			padding-right: 1px;
+			display: inline-block;
+			-webkit-font-smoothing: antialiased;
+			font-family: 'dashicons';
+			font-weight: normal;
+			@include fontsize(20);
+			vertical-align: middle;
+			color: #55ACEE;
+		}
+	}
+
+	.label {
+		padding: 0 0 0 3px;
+		font-size: 13px;
+		color: #000000;
+	}
+
+	&.twitter {
+		a:link, a:visited, .count:before { color: #55ACEE; }
+		.count:before { margin-right:3px; content: "\f301"; @include fontsize(18); }
+	}
+
+	&.facebook {
+		a:link, a:visited, .count:before { color: #4762A7; }
+		.count:before { content: "\f305"; }
+	}
+
+	&.google {
+		a:link, a:visited, .count:before { color: #DD4B38; }
+		.count:before { content: "\f462"; }
+	}
+}

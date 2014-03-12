@@ -1,0 +1,183 @@
+/* Widget at Home */
+
+#primary .widget {
+	margin: 0 0 64px 0;
+}
+
+/* Search widget */
+#searchsubmit {
+	display: none;
+}
+
+#secondary.widget-area .widget {
+	@include fontsize(12);
+	@include sub-content-box;
+	margin: 0 0 20px 0;
+	a:link, a:visited, a:hover, a:active {
+		text-decoration: none;
+	}
+}
+
+.widget-area .widget.AdWidget_HTMLWidget,
+.widget-area .widget_twitter_timeline {
+	border: none;
+	padding: 0;
+	background: none;
+}
+
+	#secondary .widget.AdWidget_HTMLWidget {
+		//width: 300px;
+		//height: 250px;
+	}
+
+.widget-area .widget .widget-title {
+	@include fontsize(17);
+	margin: 0 0 10px 0;
+	padding: 0;
+	font-weight: normal;
+	color: #000000;
+}
+
+.widget-area .amazon {
+	border: 1px solid #E7E8E4;
+	border-radius: 3px;
+	margin: 0 0 15px 0;
+	padding: 10px 15px;
+	background: #FFFFFF;
+}
+
+.widget-area .amazon .widget-title {
+	color: #000000;
+}
+
+.widget-area .widget h2 {
+	margin: 0 0 5px 0;
+	font-size: 17px;
+	font-size: 1.7rem;
+	font-weight: bold;
+	color: #000000;
+}
+
+.widget-area .widget p {
+	margin: 0 0 10px 0;
+}
+
+.widget-area ul,
+.widget-area ol {
+	margin: 0;
+	padding: 0;
+}
+
+.widget-area li {
+	margin: 0 0 3px 0;
+	padding: 0 0 2px 0;
+	list-style: none;
+}
+/*
+.widget-area li a {
+    display: block;
+    margin-left: 1.4em;
+    padding: 10px 0;
+    text-decoration: none;
+    text-indent: -1.4em;
+}
+
+.widget-area li a:before {
+	margin: 0 10px 0 0;
+	content: "\f054";
+	font-family: "FontAwesome";
+	font-weight: normal;
+	font-style: normal;
+	display: inline;
+	color: #000000;
+	font-size: 11px;
+	font-size: 1.1rem;
+}
+*/
+
+// Built-in-widget widget_recent_entries
+.widget-area .widget_recent_entries {
+	
+	li {
+		margin-bottom: 10px;
+		&:nth-last-of-type(1) {
+			margin-bottom: 0;
+		}
+	}
+
+	a:link, a:visited {
+		display: block;
+	}
+
+	span {
+		display: block;
+		color: #999999;
+	}
+
+}
+
+// Simple Amazon
+.widget-area .simple-amazon-view {
+	margin: 0 0 15px 0;
+}
+
+.widget-area p.sa-img-box {
+}
+
+.widget-area p.sa-title {
+
+}
+
+.widget-area ul.sa-detail {
+	margin: 0;
+	clear: both;
+}
+
+.widget-area ul.sa-detail li {
+	margin: 0 0 3px 0;
+	padding: 0;
+	list-style: none;
+	color: #000000;
+	font-size: 13px;
+	font-size: 1.3rem;
+}
+
+.wpp-date {
+	font-size: 10px;
+	font-size: 1rem;
+	display: block;
+	color: #908E88;
+}
+
+
+
+
+
+
+
+.star-rating .star-full:before {
+    content: "\f155";
+}
+
+.star-rating .star-half:before {
+    content: "\f459";
+}
+
+.star-rating .star-empty:before {
+    content: "\f154";
+}
+
+.star-rating .star {
+    color: #0074A2 !important;
+    display: inline-block;
+    font-family: dashicons;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    height: 20px;
+    line-height: 1;
+    text-align: center;
+    text-decoration: inherit;
+    vertical-align: top;
+    width: 20px;
+}

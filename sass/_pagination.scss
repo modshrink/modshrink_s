@@ -1,0 +1,24 @@
+.pagination {
+	padding: 20px 0 0 0;
+	text-align: center;
+}
+ 
+.pagination span,
+.pagination a {
+	margin: 2px 2px 2px 0;
+	padding: 6px 9px 5px 9px;
+	text-decoration: none;
+	color: #FFFFFF;
+	background: #000000;
+}
+ 
+.pagination a:hover {
+	color: #FFFFFF;
+	background: #21849D;
+}
+ 
+.pagination .current {
+	padding: 6px 9px 5px 9px;
+	background: #21849D;
+	color: #FFFFFF;
+}

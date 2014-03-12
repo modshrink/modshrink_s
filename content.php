@@ -14,7 +14,7 @@
 			<span class="posted"><?php modshrink_s_posted_on(); ?></span>
 		</div> <!-- .entry-meta -->
 
-		<h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
+		<h1 class="entry-title"><?php single_cat_title(); ?><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
 		
 	</header><!-- .entry-header -->
 

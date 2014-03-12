@@ -1,0 +1,137 @@
+
+.entry-content .simple-amazon-view,
+.entry-content .appstore-helper {
+	border-radius: 7px;
+	border: 1px solid #CCCCCC;
+	margin: 0 30px 20px 30px;
+	padding: 10px;
+	background: #FFFFFF;
+}
+
+.entry-content .sa-img-box {
+	margin: 0 30px 10px 0;
+	width: 160px;
+	float: left;
+	text-align: center;
+}
+
+.entry-content .sa-title {
+	margin: 0 0 10px 0;
+}
+
+.entry-content .sa-detail {
+	margin: 0;
+}
+
+.entry-content .sa-detail li {
+	margin: 0 0 3px 0;
+	padding: 0;
+	list-style: none;
+	font-size: 13px;
+	font-size: 1.3rem;
+}
+
+.entry-content .app-img-box {
+	margin: 0 30px 10px 0;
+	width: 80px;
+	float: left;
+	text-align: center;
+}
+
+.entry-content .app-img-box img {
+	border-radius: 8px;
+	box-shadow: 1px 4px 6px 1px #999999;
+}
+
+
+
+/* =レーティング
+----------------------------------------------- */
+.rating-star {
+	height: 20px;
+	width: 100px;
+	background: url(images/rating.png) no-repeat;
+}
+
+.late0\.5 {
+	background-position: 0px 0px;
+}
+
+.rate1 {
+	background-position: 0px -20px;
+}
+
+.rate1\.5 {
+	background-position: 0px -40px;
+}
+
+.rate2 {
+	background-position: 0px -60px;
+}
+
+.rate2\.5 {
+	background-position: 0px -80px;
+}
+
+.rate3 {
+	background-position: 0px -100px;
+}
+
+.rate3\.5 {
+	background-position: 0px -120px;
+}
+
+.rate4 {
+	background-position: 0px -140px;
+}
+
+.rate4\.5 {
+	background-position: 0px -160px;
+}
+
+.rate5 {
+	background-position: 0px -180px;
+}
+
+@media screen and (max-width: 480px) {
+	.entry-content .simple-amazon-view {
+		border: 1px solid #CCCCCC;
+		border-radius: 5px;
+		margin: 0 10px 10px 10px;
+		padding: 10px;
+		background: #FFFFFF;
+		box-shadow: none;
+	}
+
+	.entry-content .sa-img-box {
+		margin: 0 0 10px;
+		width: auto;
+		float: none;
+		text-align: center;
+	}
+
+	.entry-content .sa-title {
+		margin: 0 0 10px 0;
+		font-size: 14px;
+		font-size: 1.4rem;
+	}
+
+	.entry-content .sa-detail {
+		margin: 0;
+	}
+
+	.entry-content .sa-detail li {
+		margin: 0 0 3px 0;
+		padding: 0;
+		list-style: none;
+		font-size: 13px;
+		font-size: 1.3rem;
+		line-height: 1em
+	}
+
+	.entry-content .amazon-button {
+		margin: 0;
+		padding: 0;
+		text-align: center;
+	}
+} /* max-width 480px */

@@ -1,0 +1,72 @@
+// masthead
+
+.site-header {
+	margin: 0 0 1em 0;
+	padding: 0;
+}
+
+.site-branding {
+	margin: 0 auto;
+	max-width: 1218px;
+}
+
+.site-title {
+	margin: 0;
+	font-family: 'Varela Round', sans-serif;
+	font-weight: normal;
+	@include fontsize(80);
+	line-height: 1em;
+	text-transform: capitalize;
+
+	a:link, a:visited {
+		color: #000000;
+		text-decoration: none;
+	}
+	a:hover, a:active {
+		text-decoration: none;
+	}
+}
+
+.site-description {
+	@include fontsize(12);
+	@include sub-content-box;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 20px;
+	margin-left: 0;
+	line-height: 1.2em;
+	color: #979797;
+}
+
+.site-search {
+	margin: 0;
+	text-align: right;
+}
+
+@media screen and (max-width: 768px) {
+
+	.site-title {
+		@include fontsize(70);
+	}
+}
+
+@media screen and (max-width: 480px) {
+
+	.site-branding {
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	.site-title {
+		@include fontsize(60);
+	}
+
+	.site-description {
+	}
+
+	.site-search {
+		margin: 0 0 10px 0;
+		text-align: left;
+	}
+	
+} /* max-width 480px */

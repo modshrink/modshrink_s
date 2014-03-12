@@ -1,0 +1,32 @@
+.similar-posts {
+	@include sub-content-box;
+	margin: 0 0 20px 0;
+}
+
+.similar-posts h3 {
+    clear: both;
+    color: #000000;
+    @include fontsize(20);
+    font-weight: normal;
+    margin: 0 0 10px 0;
+}
+
+.similar-posts ul {
+ 	margin: 0;
+ 	padding: 0;
+}
+
+.similar-posts li {
+	border-bottom: 1px solid #979797;
+	margin: 0 0 3px 0;
+	padding: 0 0 2px 0;
+	list-style: none;
+	@include fontsize(13);
+	a:link, a:visited, a:hover, a:active {
+		text-decoration: none;
+	}
+}
+
+.similar-posts li:last-of-type {
+	border: none;
+}

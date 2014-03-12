@@ -13,17 +13,17 @@
 			<div class="social-button">
 				<div class="custom-button twitter">
 					<a href="https://twitter.com/share?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>" onClick="window.open(encodeURI(decodeURI(this.href)), 'tweetwindow','width=550, height=450, personalbar=0, toolbar=0, scrollbars=1, resizable=!' ); return false;">
-						<span class="count"><?php echo social_count(get_permalink(), 'twitter'); ?></span><span class="label"><?php if(social_count(get_permalink(), 'twitter') > 1) { echo "tweets"; } else { echo "tweet"; } ?></span>
+							<span class="count"><?php if ( social_count(get_permalink(), 'twitter') != 0 ) { echo social_count(get_permalink(), 'twitter'); } ?></span><span class="label"><?php if(social_count(get_permalink(), 'twitter') > 1) { echo "tweets"; } else { echo "tweet"; } ?></span>
 					</a>
 				</div>
 				<div class="custom-button facebook">
 					<a href="http://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>&amp;t=<?php the_title(); ?>" onClick="window.open(encodeURI(decodeURI(this.href)), 'tweetwindow','width=550, height=450, personalbar=0, toolbar=0, scrollbars=1, resizable=!' ); return false;">
-						<span class="count"><?php echo social_count(get_permalink(), 'facebook'); ?></span><span class="label"><?php if(social_count(get_permalink(), 'facebook') > 1) { echo "likes"; } else { echo "like"; } ?></span>
+						<span class="count"><?php if ( social_count(get_permalink(), 'facebook') !=0 ) { echo social_count(get_permalink(), 'facebook'); } ?></span><span class="label"><?php if(social_count(get_permalink(), 'facebook') > 1) { echo "likes"; } else { echo "like"; } ?></span>
 					</a>
 				</div>
 				<div class="custom-button google">
 					<a href="https://plus.google.com/share?url=<?php the_permalink(); ?>" onClick="window.open(encodeURI(decodeURI(this.href)), 'tweetwindow','width=550, height=450, personalbar=0, toolbar=0, scrollbars=1, resizable=!' ); return false;">
-						<span class="count"><?php echo social_count(get_permalink(), 'google'); ?></span><span class="label">plus</span>
+						<span class="count"><?php if ( social_count(get_permalink(), 'google') != 0 ) { echo social_count(get_permalink(), 'google'); } ?></span><span class="label">plus</span>
 					</a>
 				</div>
 			</div>
@@ -57,7 +57,7 @@
 
 <?php if (function_exists('similar_posts')) { ?>
 <article class="similar-posts">
-	<h1>関連記事</h1>
+	<h3>関連記事</h3>
 	<?php similar_posts(); ?>
 </article>	
 
