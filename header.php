@@ -17,18 +17,53 @@
 
 <body <?php body_class(); ?>>
 <?php dynamic_sidebar( 'after_body' ); ?>
+
 	<script type="text/javascript">
 jQuery(document).ready(function($){
 	$(function(){
-	    $(".menu li:first-child").click(function(){
+        
+		var timer = false;
+
+		if($('body').width() > 480){
+			// ウィンドウサイズが480より大きい場合
+			$(window).resize(function() {
+			    if (timer !== false) {
+			        clearTimeout(timer);
+			    }
+			    timer = setTimeout(function() {
+			        console.log('resized');
+			       	//ウィンドウサイズいが480より小さくなり、トグル用のセレクタが無ければメニューアイコンを表示
+			        if($('body').width() < 480 && !$("#global-menu-toggle").size()) {
+			        	$(".menu li:first-child").before('<li id="global-menu-toggle" class="menu-item"><a href="#"></a></li>');
+							    $("#global-menu-toggle a").click(function(){
+									$(".menu li:not(:first)").slideToggle();
+	 						   	});
+			        }
+					//ウィンドウサイズいが481より大きくなったらメニューアイコンを非表示
+			        if($('body').width() > 481) {
+                            $("li.menu-item").removeAttr("style");
+                        
+						if($("#global-menu-toggle").size()){
+							$("#global-menu-toggle").remove();
+						}
+			        }
+			    }, 200);
+			}); 			
+		} else {
+			// ウィンドウサイズが480より小さい場合は最初からメニューアイコン表示
+			$(".menu li:first-child").before('<li id="global-menu-toggle" class="menu-item"><a href="#"></a></li>');
+		}
+
+	    $("#global-menu-toggle a").click(function(){
 	    	$(".menu li:not(:first)").slideToggle();
 	    });
+
 	});
 });
 	</script>
 
 <nav id="site-navigation" class="main-navigation" role="navigation">
-<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+	<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
 </nav><!-- #site-navigation -->
 
 <div id="page" class="hfeed site">

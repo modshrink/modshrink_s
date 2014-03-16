@@ -50,6 +50,10 @@
 				<?php $cat = get_the_category(); $cat = $cat[0]; { echo $cat->cat_name; } ?>
 				<?php } ?>
 			</p>
+			<dl>
+				<dt></dt>
+				<dd></dd>
+			</dl>
 	</footer><!-- .entry-meta -->
 </article><!-- #post-## -->
 

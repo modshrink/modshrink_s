@@ -17,7 +17,11 @@
 
 	ul.menu {
 		margin: 0;
-	@include clearfix;
+		@include clearfix;
+	}
+
+	li#global-menu-toggle {
+		display: none;
 	}
 
 	li.menu-item {
@@ -29,10 +33,6 @@
 		text-align: center;
 		text-transform: uppercase;
 		display: block;
-
-				&:first-child {
-					display: none;
-				}
 
 		a { display: block; }
 
@@ -97,9 +97,12 @@
 			height: auto;
 		}
 
+		li#global-menu-toggle {
+			display: block;
+		}
+
 		li.menu-item {
 			a { display: block; }
-			@include fontsize(20);
 			float: left;
 			width: 50%;
 			list-style-type: none;
@@ -109,14 +112,19 @@
 				&:first-child {
 					display: block;
 					a:after{
-					@include fontsize(20);
-					content: "\f333";
-					display: inline-block;
-					-webkit-font-smoothing: antialiased;
-					font-family: 'dashicons';
-					font-style: normal;
-					vertical-align: top;
+						@include fontsize(20);
+						content: "\f333";
+						display: inline-block;
+						-webkit-font-smoothing: antialiased;
+						font-family: 'dashicons';
+						font-style: normal;
+						vertical-align: middle;
+						line-height: 0.8em;
 					}
+				}
+
+				&:nth-child(2) {
+					display: block;
 				}
 
 
