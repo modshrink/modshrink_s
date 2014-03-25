@@ -92,15 +92,13 @@
 
 	figure {
 		margin: 0 0 20px 0;
-
-		img {
-			border: 1px solid #CCCCCC;
-		}
+		text-align: center;
 	}
 
 	figcaption {
 		@include fontsize(13);
 		color: #888888;
+		text-align: left;
 	}
 
 
@@ -138,6 +136,18 @@
 		code {
 			@include fontsize(11);
 		}
+	}
+
+	label {
+		margin-right: 0.6em;
+	}
+
+	input {
+		margin-right: 0.6em
+	}
+
+	label + input {
+		margin-right: 1.2em;
 	}
 
 }

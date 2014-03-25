@@ -130,7 +130,15 @@ function modshrink_s_widgets_init() {
 	register_sidebar( array(
 		'name'          => __( 'After <body>', 'modshrink_s' ),
 		'id'            => 'after_body',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '',
+		'after_title'   => '',
+	) );
+	register_sidebar( array(
+		'name'          => __( 'After Post', 'modshrink_s' ),
+		'id'            => 'after_post',
+		'before_widget' => '',
 		'after_widget'  => '',
 		'before_title'  => '',
 		'after_title'   => '',
@@ -359,8 +367,157 @@ function social_count($url, $service){
 	    $count = file_get_contents($get_hatebu);
 	    if($count == ""){$count = 0;}
 	}
-
     return $count;
+}
+
+/**
+ * 最近の投稿ウィジェット
+ */
+
+// 既存の Recent Posts ウィジェットを削除
+
+add_action( 'widgets_init', 'remove_recent_posts_widget' );
+
+function remove_recent_posts_widget() {
+	unregister_widget('WP_Widget_Recent_Posts');
+}
+
+// Recent Posts ウィジェットを継承
+
+add_action( 'widgets_init', create_function('', 'return register_widget("Recent_posts_time_tweak");') );
+
+class Recent_posts_time_tweak extends WP_Widget_Recent_Posts {
+
+	function __construct() {
+		$widget_ops = array('classname' => 'widget_recent_entries', 'description' => __( "Your site&#8217;s most recent Posts.") );
+		parent::__construct('recent-posts', __('Recent Posts'), $widget_ops);
+		$this->alt_option_name = 'widget_recent_entries';
+
+		add_action( 'save_post', array($this, 'flush_widget_cache') );
+		add_action( 'deleted_post', array($this, 'flush_widget_cache') );
+		add_action( 'switch_theme', array($this, 'flush_widget_cache') );
+		add_action( 'admin_head', array(&$this, 'widget_recent_posts_script' ) );
+	}
+
+	function widget_recent_posts_script() {
+?>
+		<style type="text/css">label.recent-posts-disabled{color:#CCC;}</style>
+<?php
+	}
+
+	function widget($args, $instance) {
+		$cache = wp_cache_get('widget_recent_posts', 'widget');
+
+		if ( !is_array($cache) )
+			$cache = array();
+
+		if ( ! isset( $args['widget_id'] ) )
+			$args['widget_id'] = $this->id;
+
+		if ( isset( $cache[ $args['widget_id'] ] ) ) {
+			echo $cache[ $args['widget_id'] ];
+			return;
+		}
+
+		ob_start();
+		extract($args);
+
+		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Recent Posts' );
+		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
+		$number = ( ! empty( $instance['number'] ) ) ? absint( $instance['number'] ) : 5;
+		if ( ! $number )
+			$number = 5;
+		$show_date = isset( $instance['show_date'] ) ? $instance['show_date'] : false;
+		$elapsed_time = isset( $instance['elapsed_time']) ? $instance['elapsed_time'] : false;
+		$hide_topage = isset( $instance['hide_topage']) ? $instance['hide_topage'] : false;
+
+		$r = new WP_Query( apply_filters( 'widget_posts_args', array( 'posts_per_page' => $number, 'no_found_rows' => true, 'post_status' => 'publish', 'ignore_sticky_posts' => true ) ) );
+		if ($r->have_posts()) :
+?>
+		<?php if ( !$hide_topage || ( $hide_topage && !is_home() ) ) { ?>
+			<?php echo $before_widget; ?>
+			<?php if ( $title ) echo $before_title . $title . $after_title; ?>
+			<ul>
+			<?php while ( $r->have_posts() ) : $r->the_post(); ?>
+				<li>
+				<a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a>
+				<?php if ( $show_date ) : ?>
+				<span class="post-date"><?php if ( $elapsed_time ) : printf( __( '%s ago' ), human_time_diff( get_the_time( 'U' ) ) ); else : echo get_the_date(); endif; ?></span>
+				<?php endif; ?>
+				</li>
+			<?php endwhile; ?>
+			</ul>
+			<?php echo $after_widget; ?>
+		<?php } ?>
+<?php
+		// Reset the global $the_post as this query will have stomped on it
+		wp_reset_postdata();
+
+		endif;
+
+		$cache[$args['widget_id']] = ob_get_flush();
+		wp_cache_set('widget_recent_posts', $cache, 'widget');
+	}
+
+	function update( $new_instance, $old_instance ) {
+		$instance = $old_instance;
+		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['number'] = (int) $new_instance['number'];
+		$instance['show_date'] = isset( $new_instance['show_date'] ) ? (bool) $new_instance['show_date'] : false;
+		$instance['elapsed_time'] = isset( $new_instance['elapsed_time'] ) ? (bool) $new_instance['elapsed_time'] : false;
+		$instance['hide_topage'] = isset( $new_instance['hide_topage'] ) ? (bool) $new_instance['hide_topage'] : false;
+		$this->flush_widget_cache();
+
+		$alloptions = wp_cache_get( 'alloptions', 'options' );
+		if ( isset($alloptions['widget_recent_entries']) )
+			delete_option('widget_recent_entries');
+
+		return $instance;
+	}
+
+	function form( $instance ) {
+		$title = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : '';
+		$number = isset( $instance['number'] ) ? absint( $instance['number'] ) : 5;
+		$show_date = isset( $instance['show_date'] ) ? (bool) $instance['show_date'] : false;
+		$elapsed_time = isset( $instance['elapsed_time'] ) ? (bool) $instance['elapsed_time'] : false;
+		$hide_topage = isset( $instance['hide_topage'] ) ? (bool) $instance['hide_topage'] : false;
+		$disabled = (!$show_date) ? 'disabled="disabled"' : '';
+		?>
+
+		<script type="text/javascript">
+			jQuery(document).ready(function($){
+				$(function(){
+					if(!$('#<?php echo $this->get_field_id( 'show_date' ); ?>:checked').val()) {
+						$('#<?php echo $this->get_field_id( 'elapsed_time' ); ?> + label').addClass('recent-posts-disabled');
+					}
+					$('#<?php echo $this->get_field_id( 'show_date' ); ?>').change(function(){
+						if ($(this).is(':checked')) {
+							$('#<?php echo $this->get_field_id( 'elapsed_time' ); ?>').removeAttr('disabled');
+							$('#<?php echo $this->get_field_id( 'elapsed_time' ); ?> + label').removeClass('recent-posts-disabled');
+						} else {
+							$('#<?php echo $this->get_field_id( 'elapsed_time' ); ?>').attr('disabled','disabled');
+							$('#<?php echo $this->get_field_id( 'elapsed_time' ); ?> + label').addClass('recent-posts-disabled');
+						}
+					});
+				});
+			});
+		</script>
+		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" /></p>
+
+		<p><label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:' ); ?></label>
+		<input id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="text" value="<?php echo $number; ?>" size="3" /></p>
+
+		<p><input class="checkbox" type="checkbox" <?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" />
+		<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Display post date?' ); ?></label></p>
+
+		<p><input class="checkbox" type="checkbox" <?php checked( $elapsed_time ); ?> <?php echo $disabled; ?> id="<?php echo $this->get_field_id( 'elapsed_time' ); ?>" name="<?php echo $this->get_field_name( 'elapsed_time' ); ?>" />
+		<label for="<?php echo $this->get_field_id( 'elapsed_time' ); ?>"><?php _e( 'Time elapsed since posted' ); ?></label></p>
+
+		<p><input class="checkbox" type="checkbox" <?php checked( $hide_topage ); ?> id="<?php echo $this->get_field_id( 'hide_topage' ); ?>" name="<?php echo $this->get_field_name( 'hide_topage' ); ?>" />
+		<label for="<?php echo $this->get_field_id( 'hide_topage' ); ?>"><?php _e( 'Hide from the top page' ); ?></label></p>
+<?php
+	}
 }
 
 /**
@@ -459,6 +616,9 @@ class My_Recent_Posts extends WP_Widget {
 
 		<p><label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:' ); ?></label>
 		<input id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="text" value="<?php echo $number; ?>" size="3" /></p>
+
+		<p><input class="checkbox" type="checkbox" <?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" />
+		<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Display post date?' ); ?></label></p>
 
 		<p><input class="checkbox" type="checkbox" <?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" />
 		<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Display post date?' ); ?></label></p>

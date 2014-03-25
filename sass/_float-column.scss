@@ -9,6 +9,10 @@
 	overflow: hidden;
 }
 
+.page #page {
+	background: $color-sub-content;
+}
+
 .page #main {
 	max-width: 1080px;
 }
@@ -28,9 +32,9 @@
 }
 
 .page .site-content {
-	@include sub-content-box;
 	border-radius: 5px;
 	padding: 40px;
+	background : #FFFFFF;
 }
 
 #secondary {
@@ -141,7 +145,6 @@
 	}
 
 	.page .site-content {
-		@include sub-content-box;
 		border-radius: 3px;
 		padding: 10px;
 	}

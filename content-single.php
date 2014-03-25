@@ -50,16 +50,16 @@
 				<?php $cat = get_the_category(); $cat = $cat[0]; { echo $cat->cat_name; } ?>
 				<?php } ?>
 			</p>
-			<dl>
-				<dt></dt>
-				<dd></dd>
-			</dl>
 	</footer><!-- .entry-meta -->
 </article><!-- #post-## -->
 
+<?php if ( is_active_sidebar( 'after_post' ) ) { ?>
+<aside class="adsense">
+	<?php dynamic_sidebar( 'after_post' ); ?>
+</aside>
+<?php } ?>
 
-
-<?php if (function_exists('similar_posts')) { ?>
+<?php if (function_exists( 'similar_posts' ) ) { ?>
 <article class="similar-posts">
 	<h3>関連記事</h3>
 	<?php similar_posts(); ?>

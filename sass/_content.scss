@@ -1,11 +1,22 @@
+.home #content .section-title {
+	@include fontsize(22);
+	margin-bottom: 0.6em;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+.sticky + .section-title {
+	margin-top: 1.8em;
+}
+
 .hentry {
 	margin: 0 0 10px 0;
 }
 
-.home .hentry,
-.archive .hentry {
-	padding: 5px;
-	background: #FFFFFF;
+.sticky {
+	border: 1px solid $color-sub-content;
+	border-radius: 5px;
 }
 
 .entry-header {
@@ -31,9 +42,7 @@
 }
 
 .page .entry-title {
-	border-radius: 3px;
-	padding: 3px 20px;
-	background: #FFFFFF;
+	@include fontsize(35);
 }
 
 .single .entry-title a:link,
@@ -83,12 +92,10 @@
 .home .entry-meta,
 .archive .entry-meta {
 	margin: 0 0 5px 0;
-	padding: 5px 10px;
-	@include fontsize(20);
+	padding: 0.1em 0.5em;
 
 	.posted {
 		font-family: 'Times New Roman', serif;
-		font-style: italic;
 	}
 }
 

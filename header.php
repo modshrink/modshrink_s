@@ -12,11 +12,10 @@
 <![endif]-->
 <?php wp_head(); ?>
 <meta name="google-site-verification" content="MCSoCS7EYpb0K1_DwxgWH6SQ8PeGdAyGYEsSdCK48JQ" />
-<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 </head>
 
 <body <?php body_class(); ?>>
-<?php dynamic_sidebar( 'after_body' ); ?>
+<?php if ( is_active_sidebar( 'after_body' ) ) { dynamic_sidebar( 'after_body' ); } ?>
 
 	<script type="text/javascript">
 jQuery(document).ready(function($){

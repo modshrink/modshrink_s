@@ -22,3 +22,9 @@
 	</div><!-- .entry-content -->
 	<?php // edit_post_link( __( 'Edit', 'modshrink_s' ), '<footer class="entry-meta"><span class="edit-link">', '</span></footer>' ); ?>
 </article><!-- #post-## -->
+
+<?php if ( is_active_sidebar( 'after_post' ) ) { ?>
+<aside class="adsense">
+	<?php dynamic_sidebar( 'after_post' ); ?>
+</aside>
+<?php } ?>
