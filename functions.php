@@ -388,23 +388,6 @@ add_action( 'widgets_init', create_function('', 'return register_widget("Recent_
 
 class Recent_posts_time_tweak extends WP_Widget_Recent_Posts {
 
-	function __construct() {
-		$widget_ops = array('classname' => 'widget_recent_entries', 'description' => __( "Your site&#8217;s most recent Posts.") );
-		parent::__construct('recent-posts', __('Recent Posts'), $widget_ops);
-		$this->alt_option_name = 'widget_recent_entries';
-
-		add_action( 'save_post', array($this, 'flush_widget_cache') );
-		add_action( 'deleted_post', array($this, 'flush_widget_cache') );
-		add_action( 'switch_theme', array($this, 'flush_widget_cache') );
-		add_action( 'admin_head', array(&$this, 'widget_recent_posts_script' ) );
-	}
-
-	function widget_recent_posts_script() {
-?>
-		<style type="text/css">label.recent-posts-disabled{color:#CCC;}</style>
-<?php
-	}
-
 	function widget($args, $instance) {
 		$cache = wp_cache_get('widget_recent_posts', 'widget');
 
@@ -481,27 +464,7 @@ class Recent_posts_time_tweak extends WP_Widget_Recent_Posts {
 		$show_date = isset( $instance['show_date'] ) ? (bool) $instance['show_date'] : false;
 		$elapsed_time = isset( $instance['elapsed_time'] ) ? (bool) $instance['elapsed_time'] : false;
 		$hide_topage = isset( $instance['hide_topage'] ) ? (bool) $instance['hide_topage'] : false;
-		$disabled = (!$show_date) ? 'disabled="disabled"' : '';
 		?>
-
-		<script type="text/javascript">
-			jQuery(document).ready(function($){
-				$(function(){
-					if(!$('#<?php echo $this->get_field_id( 'show_date' ); ?>:checked').val()) {
-						$('#<?php echo $this->get_field_id( 'elapsed_time' ); ?> + label').addClass('recent-posts-disabled');
-					}
-					$('#<?php echo $this->get_field_id( 'show_date' ); ?>').change(function(){
-						if ($(this).is(':checked')) {
-							$('#<?php echo $this->get_field_id( 'elapsed_time' ); ?>').removeAttr('disabled');
-							$('#<?php echo $this->get_field_id( 'elapsed_time' ); ?> + label').removeClass('recent-posts-disabled');
-						} else {
-							$('#<?php echo $this->get_field_id( 'elapsed_time' ); ?>').attr('disabled','disabled');
-							$('#<?php echo $this->get_field_id( 'elapsed_time' ); ?> + label').addClass('recent-posts-disabled');
-						}
-					});
-				});
-			});
-		</script>
 		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" /></p>
 
@@ -511,7 +474,7 @@ class Recent_posts_time_tweak extends WP_Widget_Recent_Posts {
 		<p><input class="checkbox" type="checkbox" <?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" />
 		<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Display post date?' ); ?></label></p>
 
-		<p><input class="checkbox" type="checkbox" <?php checked( $elapsed_time ); ?> <?php echo $disabled; ?> id="<?php echo $this->get_field_id( 'elapsed_time' ); ?>" name="<?php echo $this->get_field_name( 'elapsed_time' ); ?>" />
+		<p><input class="checkbox" type="checkbox" <?php checked( $elapsed_time ); ?> id="<?php echo $this->get_field_id( 'elapsed_time' ); ?>" name="<?php echo $this->get_field_name( 'elapsed_time' ); ?>" />
 		<label for="<?php echo $this->get_field_id( 'elapsed_time' ); ?>"><?php _e( 'Time elapsed since posted' ); ?></label></p>
 
 		<p><input class="checkbox" type="checkbox" <?php checked( $hide_topage ); ?> id="<?php echo $this->get_field_id( 'hide_topage' ); ?>" name="<?php echo $this->get_field_name( 'hide_topage' ); ?>" />
