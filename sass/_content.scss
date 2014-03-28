@@ -2,7 +2,7 @@
 	@include fontsize(22);
 	margin-bottom: 0.6em;
 	text-transform: uppercase;
-	font-weight: bold;
+	font-weight: normal;
 	font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
@@ -75,15 +75,12 @@
 	border-radius: 3px;
 	margin: 0 0 20px 0;
 	padding: 15px 10px;
-	@include fontsize(17);
+	@include fontsize(13);
 	@include clearfix;
 	background: $color-sub-content;
 	clear: both;
-	color: #979797;
-
 	.posted-on {
 		color: #9D9999;
-		@include fontsize(13);
 		font-style: italic;
 
 	}
@@ -92,11 +89,7 @@
 .home .entry-meta,
 .archive .entry-meta {
 	margin: 0 0 5px 0;
-	padding: 0.1em 0.5em;
-
-	.posted {
-		font-family: 'Times New Roman', serif;
-	}
+	padding: 0.5em 0.7em;
 }
 
 .entry-thumbnail {
