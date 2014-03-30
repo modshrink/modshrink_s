@@ -1,21 +1,23 @@
 #site-navigation {
 	background-color: $color-sub-content;
+	width: 100%;
 	position: relative;
 	height: 45px;
 	.menu {
-		margin: 0 auto;
+		margin: 0 auto 0 auto;
 		width: 1228px;
 		padding: 0.6em;
 		text-transform: uppercase;
+		background-image: url("./images/global-menu-icon.png");
+		background-position: 15px center;
+		background-repeat: no-repeat;
 		li {
 			margin-right: 1.1em;
 			display: inline;
 			list-style-type: none;
 			font-family: 'Helvetica Neue', 'Helvetica', 'Arial',sans-serif;
 			&:first-child {
-				a {
-					color: #D04173;
-				}
+				margin-left: 50px;
 			}
 			&:last-child {
 				margin-right: 0;
@@ -31,9 +33,29 @@
 	}
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 1080px) {
 	#site-navigation {
+		.menu {
+			width: 100%;
+		}
+	}
+}
 
+@media screen and (max-width: 768px) {
+}
+
+
+@media screen and (max-width: 480px) {
+	@media screen and (-webkit-min-device-pixel-ratio:2), (min-resolution: 2dppx) {
+		#site-navigation{
+			background-image: url("./images/global-menu-icon@2x.png");
+			background-size: 25px 25px;
+		}
+	}
+	#site-navigation {
+			background-position: center;
+			background-image: url("./images/global-menu-icon.png");
+			background-repeat: no-repeat;
 		.menu {
 			margin: 0;
 			padding: 0;
@@ -43,6 +65,7 @@
 			background-color: rgba(255, 255, 255, 0.95);
 			width: 100%;
 			display: none;
+			background-image: none;
 
 			li {
 				margin: 0.75em 0 0.75em 1em;
@@ -50,8 +73,8 @@
 				list-style-type: none;
 				font-weight: bold;
 				display: block;
-				&:last-child {
-
+				&:first-child {
+					margin-left: 1em;
 				}
 			}
 			a {
@@ -68,6 +91,7 @@
 			visibility: visible;
 			&:before{
 				@include fontsize(30);
+				margin-right: 0.7em;
 				content: "\f333";
 				display: inline-block;
 				-webkit-font-smoothing: antialiased;
