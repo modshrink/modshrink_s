@@ -2,22 +2,25 @@
 	background-color: $color-sub-content;
 	width: 100%;
 	position: relative;
-	height: 45px;
 	.menu {
 		margin: 0 auto 0 auto;
 		width: 1228px;
-		padding: 0.6em;
+		padding: 0.6em 0;
 		text-transform: uppercase;
 		background-image: url("./images/global-menu-icon.png");
 		background-position: 15px center;
 		background-repeat: no-repeat;
+		background-size: 25px 25px;
+		@media screen and (-webkit-min-device-pixel-ratio:2), (min-resolution: 2dppx) {
+				background-image: url("./images/global-menu-icon@2x.png");
+		}
 		li {
 			margin-right: 1.1em;
 			display: inline;
 			list-style-type: none;
 			font-family: 'Helvetica Neue', 'Helvetica', 'Arial',sans-serif;
 			&:first-child {
-				margin-left: 50px;
+				margin-left: 60px;
 			}
 			&:last-child {
 				margin-right: 0;
@@ -33,10 +36,18 @@
 	}
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width:  1268px) {
 	#site-navigation {
 		.menu {
-			width: 100%;
+			width: 1048px;
+		}
+	}
+}
+
+@media screen and (max-width: 1085px) {
+	#site-navigation {
+		.menu {
+			width: auto;
 		}
 	}
 }
@@ -46,16 +57,15 @@
 
 
 @media screen and (max-width: 480px) {
-	@media screen and (-webkit-min-device-pixel-ratio:2), (min-resolution: 2dppx) {
-		#site-navigation{
-			background-image: url("./images/global-menu-icon@2x.png");
-			background-size: 25px 25px;
-		}
-	}
 	#site-navigation {
-			background-position: center;
-			background-image: url("./images/global-menu-icon.png");
-			background-repeat: no-repeat;
+		height: 45px;
+		background-position: center;
+		background-image: url("./images/global-menu-icon.png");
+		background-repeat: no-repeat;
+		background-size: 25px 25px;
+		@media screen and (-webkit-min-device-pixel-ratio:2), (min-resolution: 2dppx) {
+			background-image: url("./images/global-menu-icon@2x.png");
+		}
 		.menu {
 			margin: 0;
 			padding: 0;
@@ -98,181 +108,10 @@
 				font-family: 'dashicons';
 				font-style: normal;
 				vertical-align: middle;
-				color: #000000;
+				color: #D04173;
 				float: right;
 			}
 		}
 	}
 }
-
-
-
-/*
-#site-navigation {
-	background: #000000;
-
-	a {
-		padding: 7px 10px;
-		text-decoration: none;
-		display: block;
-		background: #000000;
-		color: #FFFFFF;
-
-		&:hover {
-			background: #FFFFFF;
-			color: #000000;
-		}
-	}
-
-	ul.menu {
-		margin: 0;
-		@include clearfix;
-	}
-
-	li#global-menu-toggle {
-		display: none;
-	}
-
-	li.menu-item {
-		@include fontsize(13);
-		float: left;
-		width: 200px;
-		list-style-type: none;
-		position: relative;
-		text-align: center;
-		text-transform: uppercase;
-		display: block;
-
-		a { display: block; }
-
-		ul.sub-menu {
-			margin: 0;
-			padding: 10px 0 0 0;
-			position: absolute;
-			display: none;
-
-		}
-
-		&:hover .sub-menu {
-			display: block;
-		}
-
-		.menu-item {
-			border: none;
-			margin: 0;
-			padding: 0;
-
-			a {
-				padding: 5px 10px;
-				display: block;
-				&:link, &:visited, &:active {
-					color: #FFFFFF;
-					background: #000000;
-				}
-				&:hover {
-					color: #000000;
-					background: #FFFFFF;
-				}
-			}
-		}
-	}
-
-	.current-menu-parent a,
-	.current-menu-item a {
-	}
-}
-
-@media screen and (max-width: 480px) {
-	#site-navigation {
-
-		a {
-			text-decoration: none;
-			transition-property :none;
-
-			&:hover {
-				transition-property: none;
-				background: #000000;
-				color: #FFFFFF;
-			}
-		}
-
-		&:not( :target ) > a:first-of-type,
-		&:target > a:last-of-type {
-			display: block;
-		}
-
-		ul.menu {
-			margin: 0;
-			height: auto;
-		}
-
-		li#global-menu-toggle {
-			display: block;
-		}
-
-		li.menu-item {
-			a { display: block; }
-			float: left;
-			width: 50%;
-			list-style-type: none;
-			position: block;
-			display: none;
-
-				&:first-child {
-					display: block;
-					a:after{
-						@include fontsize(20);
-						content: "\f333";
-						display: inline-block;
-						-webkit-font-smoothing: antialiased;
-						font-family: 'dashicons';
-						font-style: normal;
-						vertical-align: middle;
-						line-height: 0.8em;
-					}
-				}
-
-				&:nth-child(2) {
-					display: block;
-				}
-
-
-			ul.sub-menu {
-				margin: 0;
-				padding: 10px 0 0 0;
-				display: none;
-
-			}
-
-			&:hover .sub-menu {
-				display: block;
-			}
-
-			.menu-item {
-				border: none;
-				margin: 0;
-				padding: 0;
-
-
-				a {
-					padding: 5px 10px;
-					display: block;
-					&:link, &:visited, &:active {
-						color: #FFFFFF;
-						background: #000000;
-					}
-					&:hover {
-						color: #000000;
-						background: #FFFFFF;
-					}
-				}
-			}
-		}
-
-		.current-menu-parent a,
-		.current-menu-item a {
-		}
-	}
-}
-*/
 
