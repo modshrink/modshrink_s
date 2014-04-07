@@ -150,12 +150,11 @@ add_action( 'widgets_init', 'modshrink_s_widgets_init' );
  * Enqueue scripts and styles
  */
 function modshrink_s_scripts() {
-	//wp_enqueue_style( 'modshrink_s-style', get_stylesheet_uri() );
 	wp_enqueue_style( 'modshrink_s-style', get_stylesheet_uri(), array(), date('YmdHis') );
 	wp_enqueue_script( 'jquery' );
+	wp_enqueue_script( 'modshrink_s-navigation', get_template_directory_uri() . '/js/modshrink_s.min.js', array(), '20120206', true );
 	//wp_enqueue_style( 'dashicons', site_url('/')."/wp-includes/css/dashicons.min.css");
 
-	//wp_enqueue_script( 'modshrink_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 	//wp_enqueue_script( 'modshrink_s-doubletaptogo', get_template_directory_uri() . '/js/doubletaptogo.js', array( 'jquery' ));
 /*
 	wp_enqueue_script( 'modshrink_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
@@ -371,6 +370,22 @@ function social_count($url, $service){
 }
 
 /**
+ * TIMEタグ挿入
+ */
+
+add_action( 'admin_print_footer_scripts', 'time_tag_add_quicktags' );
+
+function time_tag_add_quicktags() {
+	if ( wp_script_is( 'quicktags' ) ){
+?>
+	<script type="text/javascript">
+		QTags.addButton( 'time_tag_add_quicktags', 'time', '<time datetime=\"\">', '', 'r', 'TIME tag' );
+	</script>
+<?php
+	}
+}
+
+/**
  * 最近の投稿ウィジェット
  */
 
@@ -379,14 +394,14 @@ function social_count($url, $service){
 add_action( 'widgets_init', 'remove_recent_posts_widget' );
 
 function remove_recent_posts_widget() {
-	unregister_widget('WP_Widget_Recent_Posts');
+	unregister_widget( 'WP_Widget_Recent_Posts' );
 }
 
 // Recent Posts ウィジェットを継承
 
-add_action( 'widgets_init', create_function('', 'return register_widget("Recent_posts_time_tweak");') );
+add_action( 'widgets_init', create_function( '', 'return register_widget( "WP_Widget_Recent_Posts_Time_Tweak" );' ) );
 
-class Recent_posts_time_tweak extends WP_Widget_Recent_Posts {
+class WP_Widget_Recent_Posts_Time_Tweak extends WP_Widget_Recent_Posts {
 
 	function widget($args, $instance) {
 		$cache = wp_cache_get('widget_recent_posts', 'widget');

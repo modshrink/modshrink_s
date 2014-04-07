@@ -15,17 +15,8 @@
 </head>
 
 <body <?php body_class(); ?>>
-<?php if ( is_active_sidebar( 'after_body' ) ) { dynamic_sidebar( 'after_body' ); } ?>
 
-	<script type="text/javascript">
-jQuery(document).ready(function($){
-	$(function(){
-		$(".mobile-nav-toggle").click(function() {
-			$("#site-navigation .menu").toggleClass("show")
-		});
-	});
-});
-	</script>
+<?php if ( is_active_sidebar( 'after_body' ) ) { dynamic_sidebar( 'after_body' ); } ?>
 
 <nav id="site-navigation" class="main-navigation" role="navigation">
 	<div class="mobile-nav-toggle"></div>
