@@ -133,15 +133,7 @@ function modshrink_s_widgets_init() {
 		'before_widget' => '',
 		'after_widget'  => '',
 		'before_title'  => '',
-		'after_title'   => '',
-	) );
-	register_sidebar( array(
-		'name'          => __( 'After Post', 'modshrink_s' ),
-		'id'            => 'after_post',
-		'before_widget' => '',
-		'after_widget'  => '',
-		'before_title'  => '',
-		'after_title'   => '',
+	'after_title'   => '',
 	) );
 }
 add_action( 'widgets_init', 'modshrink_s_widgets_init' );
@@ -207,12 +199,12 @@ function jptweak_remove_share() {
 add_action( 'loop_end', 'jptweak_remove_share' );
 
 function pagination($pages = '', $range = 4)
-{ 
-     $showitems = ($range * 2)+1; 
- 
+{
+     $showitems = ($range * 2)+1;
+
      global $paged;
      if(empty($paged)) $paged = 1;
- 
+
      if($pages == '')
      {
          global $wp_query;
@@ -221,14 +213,14 @@ function pagination($pages = '', $range = 4)
          {
              $pages = 1;
          }
-     }  
- 
+     }
+
      if(1 != $pages)
      {
          echo "<div class='pagination'>";
          if($paged > 2 && $paged > $range+1 && $showitems < $pages) echo "<a href='".get_pagenum_link(1)."'>&laquo;</a>";
          if($paged > 1 && $showitems < $pages) echo "<a href='".get_pagenum_link($paged - 1)."'>&lsaquo;</a>";
- 
+
          for ($i=1; $i <= $pages; $i++)
          {
              if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems ))
@@ -236,8 +228,8 @@ function pagination($pages = '', $range = 4)
                  echo ($paged == $i)? "<span class='current'>".$i."</span>":"<a href='".get_pagenum_link($i)."' class='inactive' >".$i."</a>";
              }
          }
- 
-         if ($paged < $pages && $showitems < $pages) echo "<a href='".get_pagenum_link($paged + 1)."'>&rsaquo;</a>"; 
+
+         if ($paged < $pages && $showitems < $pages) echo "<a href='".get_pagenum_link($paged + 1)."'>&rsaquo;</a>";
          if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) echo "<a href='".get_pagenum_link($pages)."'>&raquo;</a>";
          echo "</div>\n";
      }
@@ -253,7 +245,7 @@ function get_attachment_image_src($url, $size) {
 	$image = wp_get_attachment_image_src(get_attachment_id($url), $size);
 	return $image[0];
 }
- 
+
 /**
 * 画像のURLからattachemnt_idを取得する
 *
@@ -287,13 +279,14 @@ function catch_that_image() {
 		preg_match('/([^\/]+?)(-e\d+)?(-\d+x\d+)?(\.\w+)?$/', $first_img, $matches2);
 
 		$post_name = $matches2[1];
-		
+
 		$image_id = (int)$wpdb->get_var($wpdb->prepare($sql, $post_name));
 
-	    if(preg_match("/http:\/\/farm(.+?)_(.?).jpg/", $first_img)) { // 最初の画像がFlickrだった場合
-	       $thumb = preg_replace('/http:\/\/farm(.+?)_(.?).jpg/i', 'http://farm\1_s.jpg', $first_img);
-	    } elseif(preg_match("/http:\/\/farm(.+?).jpg/", $first_img)) { // 最初の画像がFlickrだった場合(別サイズ)
-	       $thumb = preg_replace('/http:\/\/farm(.+?).jpg/i', 'http://farm\1_s.jpg', $first_img);
+	    if(preg_match("/(http|https):\/\/farm(.+?)_(.?).jpg/", $first_img)) { // 最初の画像がFlickrだった場合
+	       $thumb = preg_replace('/(http|https):\/\/farm(.+?)_(.?).jpg/i', 'http://farm\2_s.jpg', $first_img);
+       } elseif(preg_match("/(http|https):\/\/farm(.+?).jpg/", $first_img)) { // 最初の画像がFlickrだった場合(別サイズ)
+           echo "aaa";
+	       $thumb = preg_replace('/(http|https):\/\/farm(.+?).jpg/i', 'http://farm\2_s.jpg', $first_img);
 	    } elseif($image_id !== 0) { // 画像idからサムネイルを取得
 			$output_img = wp_get_attachment_image_src($image_id, "thumbnail");
 			$first_img_thumbnail = $output_img[0];
@@ -306,7 +299,7 @@ function catch_that_image() {
 	    $html  = "<div class=\"entry-thumbnail\">";
 		$html .= "<a href=\"".get_permalink()."\"><img class=\"media-object\" width=\"75\" height=\"75\" src=\"".$thumb."\" alt=\"".get_the_title()."のサムネイル\" /></a>";
 		$html .= "</div><!-- .entry-thumbnail -->";
-	 
+
 	    if(empty($first_img)){
 	    	// デフォルト画像
 	        //$thumb = bloginfo('template_url')."/images/noimage_75px.png";
@@ -322,7 +315,7 @@ function catch_that_image() {
 function category_post_per_page( $query ) {
     if ( is_admin() || ! $query->is_main_query() )
         return;
- 
+
     if ($query->is_category()||$query->is_archive) {
         $query->set( 'posts_per_page', '-1' );
         return;
@@ -341,7 +334,7 @@ function social_count($url, $service){
 	    $json = json_decode($json);
 	    $count = $json->{'count'};
 	}
- 
+
     // facebook
     if($service == "facebook") {
 	    $get_facebook = 'http://api.facebook.com/restserver.php?method=links.getStats&urls=' . $url;
@@ -359,7 +352,7 @@ function social_count($url, $service){
 	    $data = explode("\,",$data[0]);
 	    $count = $data[0];
 	}
- 
+
     // hatena
     if($service == "hatena") {
 	    $get_hatebu = 'http://api.b.st-hatena.com/entry.count?url=' . $url;
@@ -609,14 +602,14 @@ class My_Recent_Posts extends WP_Widget {
  */
 
 add_action( 'widgets_init', create_function( '', 'return register_widget("internalCodeWidget");' ) );
- 
+
 class internalCodeWidget extends WP_Widget {
 	function __construct() {
 		$widget_ops = array('description' => 'Output for internal codes.');
 		$control_ops = array( 'width' => 300, 'height' => 600 );
 		parent::__construct( false, 'Internal Code', $widget_ops, $control_ops );
 	}
-	 
+
 	public function form( $par ) {
 		$title = (isset($par['title']) && $par['title']) ? $par['title'] : '';
 		$id = $this->get_field_id('title');
@@ -634,11 +627,11 @@ class internalCodeWidget extends WP_Widget {
 		if ( $par['text'] ) { echo trim( esc_html( $par['text'], ENT_QUOTES, 'UTF-8' ) ); }
 		echo '</textarea>';
 	}
-	 
+
 	public function update( $new_instance, $old_instance ) {
 		return $new_instance;
 	}
-	 
+
 	public function widget( $args, $par ) {
 		if ( $par['text'] ) {
 			echo trim( $par['text'] );
