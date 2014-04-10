@@ -187,6 +187,11 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/jetpack.php';
 
+/**
+ * Load theme options
+ */
+require get_template_directory() . '/inc/theme-options.php';
+
 //**********
 // _s導入後追記
 //**********
@@ -638,7 +643,6 @@ class internalCodeWidget extends WP_Widget {
 		}
 	}
 }
-
 
 /**
  * テーマの情報を取得
