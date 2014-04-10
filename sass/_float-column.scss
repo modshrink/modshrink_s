@@ -28,8 +28,6 @@
 	margin-left: auto;
 	float: none;
 	width: 100%;
-	margin-bottom: -32768px;
-	padding-bottom: 32768px;
 }
 
 .page .site-content {
@@ -40,8 +38,8 @@
 
 #secondary {
 	margin-top: 32px;
-	margin-bottom: -32768px;
-	padding-bottom: 32768px;
+	//margin-bottom: -32768px;
+	//padding-bottom: 32768px;
 	width: 300px;
 	float: left;
 }
@@ -49,8 +47,8 @@
 #tertiary {
 	margin-top: 32px;
 	margin-left: 20px;
-	margin-bottom: -32768px;
-	padding-bottom: 32768px;
+	//margin-bottom: -32768px;
+	//padding-bottom: 32768px;
 	float: left;
 	width: 160px;
 }
