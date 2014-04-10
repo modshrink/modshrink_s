@@ -638,3 +638,13 @@ class internalCodeWidget extends WP_Widget {
 		}
 	}
 }
+
+
+/**
+ * テーマの情報を取得
+ */
+
+function get_theme_info( $value ) {
+	$my_theme = wp_get_theme();
+	echo $my_theme->get( $value );
+}
