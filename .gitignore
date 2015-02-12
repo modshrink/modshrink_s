@@ -1,6 +1,10 @@
 *.sass-cache
 .DS_Store
+thumbs.db
+*~
+*.swp
 _font-ganache.scss
 node_modules/
 project/
 *.log
+*.psd
