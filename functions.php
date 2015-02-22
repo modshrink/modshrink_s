@@ -290,7 +290,6 @@ function catch_that_image() {
 	    if(preg_match("/(http|https):\/\/farm(.+?)_(.?).jpg/", $first_img)) { // 最初の画像がFlickrだった場合
 	       $thumb = preg_replace('/(http|https):\/\/farm(.+?)_(.?).jpg/i', 'http://farm\2_s.jpg', $first_img);
        } elseif(preg_match("/(http|https):\/\/farm(.+?).jpg/", $first_img)) { // 最初の画像がFlickrだった場合(別サイズ)
-           echo "aaa";
 	       $thumb = preg_replace('/(http|https):\/\/farm(.+?).jpg/i', 'http://farm\2_s.jpg', $first_img);
 	    } elseif($image_id !== 0) { // 画像idからサムネイルを取得
 			$output_img = wp_get_attachment_image_src($image_id, "thumbnail");
@@ -322,7 +321,7 @@ function category_post_per_page( $query ) {
         return;
 
     if ($query->is_category()||$query->is_archive) {
-        $query->set( 'posts_per_page', '-1' );
+        $query->set( 'posts_per_page', 20 );
         return;
     }
 }
@@ -642,13 +641,4 @@ class internalCodeWidget extends WP_Widget {
 			echo trim( $par['text'] );
 		}
 	}
-}
-
-/**
- * テーマの情報を取得
- */
-
-function get_theme_info( $value ) {
-	$my_theme = wp_get_theme();
-	echo $my_theme->get( $value );
 }
