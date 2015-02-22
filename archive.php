@@ -98,6 +98,7 @@ get_header(); ?>
 
 			<?php // modshrink_s_content_nav( 'nav-below' ); ?>
 			<?php // if (function_exists("pagination")) { pagination($additional_loop->max_num_pages); } ?>
+			<?php the_posts_pagination( array( 'mid_size'=> 2, 'prev_text' => 'Prev', 'next_text' => 'Next' ) );?>
 
 		<?php else : ?>
 
