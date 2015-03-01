@@ -11,8 +11,7 @@
 
 #secondary.widget-area .widget {
 	@include fontsize(12);
-	@include sub-content-box;
-	margin: 0 0 20px 0;
+	margin: 0 0 40px 0;
 	a:link, a:visited, a:hover, a:active {
 		text-decoration: none;
 	}
