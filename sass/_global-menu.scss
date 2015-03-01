@@ -1,5 +1,5 @@
 #site-navigation {
-	background-color: $color-sub-content;
+	background-color: $darkPrimaryColor;
 	width: 100%;
 	position: relative;
 	.menu {
@@ -26,7 +26,7 @@
 				margin-right: 0;
 			}
 			a {
-				color: #000000;
+				color: $textPrimaryColor;
 				text-decoration: none;
 			}
 		}
@@ -72,7 +72,7 @@
 			position: absolute;
 			top: 45px;
 			left: 0;
-			background-color: rgba(255, 255, 255, 0.95);
+			background: #E91E63;
 			width: 100%;
 			display: none;
 			background-image: none;
@@ -92,7 +92,8 @@
 				text-decoration: none;
 			}
 		}
-		.show.menu {
+		
+		&.show .menu {
 			visibility: visible;
 			display: block;
 		}
@@ -108,8 +109,15 @@
 				font-family: 'dashicons';
 				font-style: normal;
 				vertical-align: middle;
-				color: #D04173;
+				color: $textPrimaryColor;
 				float: right;
+			}
+		}
+
+		&.show .mobile-nav-toggle {
+			visibility: visible;
+			&:before{
+				content: "\f335";
 			}
 		}
 	}
