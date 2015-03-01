@@ -1,7 +1,7 @@
 .entry-content {
 	@include fontsize(15);
 	margin: 0 0 15px 0;
-	color: #334455;
+	color: $primaryTextColor;
 	line-height: 1.7em;
 
 	a:link,
@@ -32,8 +32,12 @@
 
 	h2 {
 		@include fontsize(25);
+		border-radius: 3px;
 		margin: 2em 0 1.2em 0;
+		padding: 10px;
 		font-weight: normal;
+		background: #333333;
+		color: #FFFFFF;
 		&:first-child {
 			margin-top: 0;
 		}
