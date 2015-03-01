@@ -144,7 +144,7 @@ add_action( 'widgets_init', 'modshrink_s_widgets_init' );
 function modshrink_s_scripts() {
 	wp_enqueue_style( 'modshrink_s-style', get_stylesheet_uri(), array(), date('YmdHis') );
 	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script( 'modshrink_s-navigation', get_template_directory_uri() . '/js/modshrink_s.min.js', array(), '20120206', true );
+	wp_enqueue_script( 'modshrink_s-navigation', get_template_directory_uri() . '/js/modshrink_s.js', array(), '20120206', true );
 	//wp_enqueue_style( 'dashicons', site_url('/')."/wp-includes/css/dashicons.min.css");
 
 	//wp_enqueue_script( 'modshrink_s-doubletaptogo', get_template_directory_uri() . '/js/doubletaptogo.js', array( 'jquery' ));
@@ -190,7 +190,7 @@ require get_template_directory() . '/inc/jetpack.php';
 /**
  * Load theme options
  */
-require get_template_directory() . '/inc/theme-options.php';
+//require get_template_directory() . '/inc/theme-options.php';
 
 //**********
 // _s導入後追記
@@ -437,7 +437,7 @@ class WP_Widget_Recent_Posts_Time_Tweak extends WP_Widget_Recent_Posts {
 				<li>
 				<a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a>
 				<?php if ( $show_date ) : ?>
-				<span class="post-date"><?php if ( $elapsed_time ) : printf( __( '%s ago' ), human_time_diff( get_the_time( 'U' ) ) ); else : echo get_the_date(); endif; ?></span>
+				<span class="post-date"><?php if ( $elapsed_time ) : echo human_time_diff( get_the_time( 'U' ) ) . '前' ; else : echo get_the_date(); endif; ?></span>
 				<?php endif; ?>
 				</li>
 			<?php endwhile; ?>
@@ -547,7 +547,7 @@ class My_Recent_Posts extends WP_Widget {
 		<li>
 		<a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a>
 		<?php if ( $show_date ) : ?>
-		<span class="post-date"><?php printf( __( '%s ago' ), human_time_diff(get_the_time( 'U' ))); ?></span>
+		<span class="post-date"><?php printf( __( '%1$s %2$s, %3$s ago (%4$s)' ), human_time_diff(get_the_time( 'U' ))); ?></span>
 		<?php endif; ?>
 		</li>
 		<?php endwhile; ?>
