@@ -3,7 +3,7 @@ jQuery(document).ready(function($){
 	// モバイルビューのメニュー折りたたみ
 	$(function(){
 		$(".mobile-nav-toggle").click(function() {
-			$("#site-navigation .menu").toggleClass("show")
+			$("#site-navigation").toggleClass("show");
 		});
 	});
 
