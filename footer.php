@@ -23,9 +23,6 @@
 				<a href="https://twitter.com/mayoibi" target="_blank">Twitter</a>
 			</p>
 
-
-			<p><?php get_theme_info('Name') . _e(' Theme, Version ') . get_theme_info('Version'); ?> </p>
-
 		</div><!-- .site-info -->
 
 	</footer><!-- #colophon -->
