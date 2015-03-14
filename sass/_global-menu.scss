@@ -102,22 +102,23 @@
 			visibility: visible;
 			&:before{
 				@include fontsize(30);
-				margin-right: 0.7em;
-				content: "\f333";
+				margin-left: 0.3em;
+				content: "\e700";
 				display: inline-block;
 				-webkit-font-smoothing: antialiased;
-				font-family: 'dashicons';
+				font-family: 'menuicon';
 				font-style: normal;
 				vertical-align: middle;
 				color: $textPrimaryColor;
-				float: right;
+				float: left;
 			}
 		}
 
 		&.show .mobile-nav-toggle {
 			visibility: visible;
 			&:before{
-				content: "\f335";
+				font-family: 'dashicons';
+				content: "\f158";
 			}
 		}
 	}
