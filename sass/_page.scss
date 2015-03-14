@@ -1,19 +1,18 @@
 .page-header {
-	@include sub-content-box;
 	margin: 0 0 20px 0;
 }
 
 .page-title {
 	font-size: 15px;
 	font-size: 1.5rem;
-	font-weight: normal;
-	color: #000000;
+	font-weight: bold;
+	color: $primaryColor;
 }
 
 .page-title span {
 	padding: 0 0.3em;
 	font-weight: bold;
-	color: #000000;
+	color: $primaryTextColor;
 }
 
 @media screen and (max-width: 480px) {
