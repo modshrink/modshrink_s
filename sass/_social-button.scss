@@ -50,17 +50,49 @@
 	}
 
 	&.twitter {
-		a:link, a:visited, .count:before { color: #55ACEE; }
-		.count:before { margin-right:3px; content: "\f301"; @include fontsize(18); }
+		a:link,
+		a:visited,
+		.count:before {
+			color: #55ACEE;
+		}
+		.count:before {
+			margin-right: 3px; content: "\f301";
+			@include fontsize(18);
+		}
 	}
 
 	&.facebook {
-		a:link, a:visited, .count:before { color: #4762A7; }
-		.count:before { content: "\f305"; }
+		a:link,
+		a:visited,
+		.count:before {
+			color: #4762A7;
+		}
+		.count:before {
+			content: "\f305";
+		}
 	}
 
 	&.google {
-		a:link, a:visited, .count:before { color: #DD4B38; }
-		.count:before { content: "\f462"; }
+		a:link,
+		a:visited,
+		.count:before {
+			color: #DD4B38;
+		}
+		.count:before {
+			content: "\f462";
+		}
+	}
+
+	&.pocket {
+		a:link,
+		a:visited,
+		.count:before {
+			color: #EF4960;
+		}
+		.count:before {
+			padding-right: 4px;
+			font-family: 'socialicon';content: "\e602";
+			font-size: 1.7rem;
+		}
 	}
 }
