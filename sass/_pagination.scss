@@ -4,20 +4,21 @@
 
 .pagination span,
 .pagination a {
-	border: 1px solid #B6B6B6;
+	border: 1px solid $dividerColor;
 	margin: 2px 2px 2px 0;
 	padding: 6px 9px 5px 9px;
 	text-decoration: none;
-	color: #979797;
-	background: #faf7f4;
+	color: $secondaryTextColor;
 }
 
 .pagination a:hover {
-	color: #FFFFFF;
-	background: #d64a7e;
+	background: $primaryColor;
+	color: $textPrimaryColor;
 }
 
 .pagination .current {
-	background: #d64a7e;
-	color: #FFFFFF;
+	border: 1px solid $darkPrimaryColor;
+	border: none;
+	background: $primaryColor;
+	color: $textPrimaryColor;
 }
