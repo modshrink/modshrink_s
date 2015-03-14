@@ -2,3 +2,25 @@
 
 $font-body: "Hiragino Kaku Gothic Pro", "Meiryo", "Arial", "Helvetica Neue", sans-serif;
 $font-european: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
+@font-face {
+	font-family: 'socialicon';
+	src:url('./inc/fonts/socialicon.eot?x69pou');
+	src:url('./inc/fonts/socialicon.eot?#iefixx69pou') format('embedded-opentype'),
+		url('./inc/fonts/socialicon.woff?x69pou') format('woff'),
+		url('./inc/fonts/socialicon.ttf?x69pou') format('truetype'),
+		url('./inc/fonts/socialicon.svg?x69pou#socialicon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'menuicon';
+	src:url('./inc/fonts/menuicon.eot?x69pou');
+	src:url('./inc/fonts/menuicon.eot?#iefixx69pou') format('embedded-opentype'),
+		url('./inc/fonts/menuicon.woff?x69pou') format('woff'),
+		url('./inc/fonts/menuicon.ttf?x69pou') format('truetype'),
+		url('./inc/fonts/menuicon.svg?x69pou#menuicon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
